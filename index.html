@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Question Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #questionDisplay {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Question Generator</h1>
+    <button onclick="changeQuestion()">Random Question</button>
+    <p id="questionDisplay">Aan welk huishoudelijk klusje heb jij een grote hekel?</p>
+
+    <script>
+        const questions = [
+            "Aan welk huishoudelijk klusje heb jij een grote hekel?",
+            "Aan welke spelshow zou je willen meedoen?",
+            "Wat is je favoriete vakantiebestemming?",
+            "Wat is het beste boek dat je ooit hebt gelezen?"
+        ];
+
+        function changeQuestion() {
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            document.getElementById("questionDisplay").textContent = questions[randomIndex];
+        }
+    </script>
+</body>
+</html>
