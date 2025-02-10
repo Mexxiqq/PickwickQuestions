@@ -1,53 +1,4 @@
-<!--
-	"What is your favorite book?",
-	"Where would you like to travel?",
-	"What is your favorite hobby?",
-	"What was the last movie you watched?",
-	"What is your favorite season of the year?",
-	"What is your dream job?",
-	"If you could have any superpower, what would it be?",
-	"What's the best advice you've ever received?",
-	"What is one thing you cannot live without?",
-	"Who is your favorite historical figure?",
--->	
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Question Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        #questionDisplay {
-            margin-top: 20px;
-            font-size: 1.2em;
-            color: #333;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <h1>Random Question Generator</h1>
-    <button id="randomQuestionBtn">Random Question</button>
-    <p id="questionDisplay">Press the button to display a random question!</p>
-
-    <script>
-        // Define the list of questions (simulating CSV data inline)
-        const questions = [
-			"Aan welk huishoudelijk klusje heb jij een grote hekel?",
+"Aan welk huishoudelijk klusje heb jij een grote hekel?",
 			"Aan welke spelshow zou je willen meedoen?",
 			"Aan welke sport op de olympische spelen zou je mee willen doen?",
 			"Aan welke verjaardag heb je de leukste herinnering?",
@@ -141,7 +92,6 @@
 			"Hoe ziet jouw perfecte vrijdagavond eruit?",
 			"Hoe ziet jouw verre toekomst eruit?",
 			"Hoe zou een vriend(in) jou omschrijven?",
-			
 			"Hoe zou je dag eruit zien als je miljonair was?",
 			"Hoeveel paar schoenen heb je?",
 			"Hoeveel stappen zet jij op een dag?",
@@ -706,17 +656,3 @@
 			"Zou je op Mars willen wonen als dat kon?",
 			"Zou je tien jaar korter willen leven in ruil om rijk te zijn?",
 			"Zou je voor één dag het andere geslacht willen zijn?"
-        ];
-
-        // Event listener for the button click
-        document.getElementById("randomQuestionBtn").addEventListener("click", () => {
-            // Pick a random question
-            const randomIndex = Math.floor(Math.random() * questions.length);
-            const randomQuestion = questions[randomIndex];
-
-            // Display the random question
-            document.getElementById("questionDisplay").textContent = randomQuestion;
-        });
-    </script>
-</body>
-</html>
