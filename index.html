@@ -1,39 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Question Generator</title>
+    <title>Tea Topics Sparen | Pickwick</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             margin: 0;
+            padding: 0;
+            background-color: #FAF3EC;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        #questionDisplay {
-            margin-top: 20px;
-            font-size: 1.2em;
+        .content {
+            width: 400px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+        }
+        h1 {
+            font-size: 32px;
             color: #333;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            background-color: #008CBA;
+        p {
+            font-size: 18px;
+            color: #666;
+            width: 400px;
+            height: 60px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+        .download-button {
+            display: inline-block;
+            background-color: #4CAF50;
             color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 20px;
+            cursor: pointer;
             border: none;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            opacity: 0.3;
         }
     </style>
 </head>
 <body>
-    <h1>Random Question Generator</h1>
-    <button onclick="changeQuestion()">Random Question</button>
-    <p id="questionDisplay">Aan welk huishoudelijk klusje heb jij een grote hekel?</p>
-
+    <div class="background-image"></div>
+    <main>
+        <div class="content">
+            <h1>Tea Topics</h1>
+            <p id="questionDisplay">Aan welke spelshow zou je willen meedoen?</p>
+            <button class="download-button" onclick="changeQuestion()">Generate Question</button>
+        </div>
+    </main>
     <script>
         const questions = [
 		"Aan welk huishoudelijk klusje heb jij een grote hekel?",
@@ -695,9 +738,16 @@
 		"Zou je tien jaar korter willen leven in ruil om rijk te zijn?",
 		"Zou je voor één dag het andere geslacht willen zijn?"
         ];
+        
+        let lastQuestionIndex = -1;
 
         function changeQuestion() {
-            const randomIndex = Math.floor(Math.random() * questions.length);
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * questions.length);
+            } while (randomIndex === lastQuestionIndex || questions[randomIndex] === document.getElementById("questionDisplay").textContent);
+            
+            lastQuestionIndex = randomIndex;
             document.getElementById("questionDisplay").textContent = questions[randomIndex];
         }
     </script>
