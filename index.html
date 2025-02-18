@@ -2130,18 +2130,18 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             toggleLanguage("en");  // Ensure English is loaded on start
+            document.getElementById("questionDisplay").textContent = questions[currentLanguage][0];
         });
 
         function changeQuestion() {
             let randomIndex;
             do {
-                randomIndex = Math.floor(Math.random() * questions[currentLanguage].length);
+                randomIndex = Math.floor(Math.random() * (questions[currentLanguage].length - 1)) + 1;
             } while (randomIndex === lastQuestionIndex);
 
             lastQuestionIndex = randomIndex;
             document.getElementById("questionDisplay").textContent = questions[currentLanguage][randomIndex];
         }
-
 
         function toggleLanguage(language) {
             currentLanguage = language;
@@ -2150,11 +2150,19 @@
                 language === "nl" ? "Tea Topics" :
                     language === "en" ? "Tea Topics" : "Temas de Té";
 
-            document.getElementById("questionDisplay").textContent = questions[language][0];
+            // Display the current question in the selected language
+            const currentQuestionText = document.getElementById("questionDisplay").textContent;
+            const currentIndex = questions.en.indexOf(currentQuestionText) !== -1 ? questions.en.indexOf(currentQuestionText) :
+                (questions.nl.indexOf(currentQuestionText) !== -1 ? questions.nl.indexOf(currentQuestionText) : questions.es.indexOf(currentQuestionText));
+
+            // Find the same index in the new language
+            document.getElementById("questionDisplay").textContent = questions[language][currentIndex];
+
             document.getElementById("questionButton").textContent =
                 language === "nl" ? "Nieuwe Vraag" :
                     language === "en" ? "New Question" : "Nueva Pregunta";
 
+            // Update the selected language flag styling
             document.querySelectorAll('.flag').forEach(flag => flag.classList.remove('selected'));
             document.getElementById(`flag-${language}`).classList.add('selected');
         }
